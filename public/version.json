@@ -1,9 +1,9 @@
 {
-  "latestVersion": "1.0.0",
-  "latestBuild": 1,
+  "latestVersion": "1.0.1",
+  "latestBuild": 2,
   "minimumBuild": 1,
   "forceUpdate": false,
-  "downloadEnabled": false,
+  "downloadEnabled": true,
   "downloadUrl": "https://rongbao.yick.cc/rongbao.apk",
-  "releaseNotes": "茸宝 1.0.0 内测版"
+  "releaseNotes": "茸宝 1.0.1 测试更新"
 }
