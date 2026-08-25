@@ -33,6 +33,7 @@ export default function Home() {
         <nav aria-label="主要导航">
           <a href="#features">产品功能</a>
           <a href="#about">关于茸宝</a>
+          <Link href="/privacy">隐私政策</Link>
           <a href="#contact">联系我们</a>
         </nav>
       </header>
@@ -116,7 +117,7 @@ export default function Home() {
           <h2>茸宝正在认真准备与你见面。</h2>
           <p>
             Android 版本仍在内测完善中。产品建议与合作沟通，请发送邮件至
-            <a href="mailto:luanjianjie@163.com"> luanjianjie@163.com</a>。
+            <a href="mailto:jianjieluan@163.com"> jianjieluan@163.com</a>。
           </p>
         </div>
         <button className="download-button light" type="button" disabled>
@@ -135,7 +136,8 @@ export default function Home() {
         <div className="footer-links">
           <Link href="/privacy">隐私政策</Link>
           <Link href="/terms">用户协议</Link>
-          <a href="mailto:luanjianjie@163.com">联系我们</a>
+          <Link href="/account-deletion">账号删除</Link>
+          <a href="mailto:jianjieluan@163.com">联系我们</a>
         </div>
         <p className="copyright">© 2026 Rongbao</p>
       </footer>

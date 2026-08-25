@@ -521,6 +521,27 @@ footer {
   line-height: 2;
 }
 
+.legal-lead {
+  padding: 24px 26px;
+  border-radius: 18px;
+  background: var(--mint);
+  color: var(--deep-green) !important;
+  font-weight: 560;
+}
+
+.legal-content ul,
+.legal-content ol {
+  margin: 0;
+  padding-left: 1.5em;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 2;
+}
+
+.legal-content li + li {
+  margin-top: 6px;
+}
+
 .legal-note {
   margin: 64px 0 0;
   padding: 22px 24px;
