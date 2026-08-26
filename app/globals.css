@@ -55,13 +55,10 @@ a {
 .brand-mark {
   width: 38px;
   height: 38px;
-  display: grid;
-  place-items: center;
+  display: block;
+  object-fit: contain;
   border-radius: 12px;
-  background: var(--deep-green);
-  color: white;
-  font-size: 17px;
-  letter-spacing: 0;
+  background: var(--mint);
 }
 
 nav {
@@ -126,6 +123,11 @@ h1 span {
 .download-button {
   min-width: 188px;
   height: 52px;
+  padding: 0 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   border: 0;
   border-radius: 16px;
   background: var(--deep-green);
@@ -133,8 +135,14 @@ h1 span {
   font: inherit;
   font-size: 15px;
   font-weight: 650;
-  opacity: 0.72;
-  cursor: not-allowed;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.download-button:hover {
+  background: #23665a;
+  box-shadow: 0 12px 28px rgba(23, 79, 69, 0.18);
+  transform: translateY(-2px);
 }
 
 .hero-visual {
@@ -388,7 +396,7 @@ h1 span {
   margin-bottom: 120px;
   padding: 48px 54px;
   display: grid;
-  grid-template-columns: 130px minmax(0, 1fr) auto;
+  grid-template-columns: 116px minmax(0, 1fr) 300px;
   align-items: center;
   gap: 40px;
   border: 1px solid var(--line);
@@ -396,12 +404,21 @@ h1 span {
   background: var(--paper);
 }
 
-.coming-soon img {
-  width: 130px;
-  height: 130px;
-  object-fit: contain;
+.download-emblem {
+  width: 116px;
+  height: 116px;
+  position: relative;
+  overflow: hidden;
   border-radius: 50%;
   background: var(--mint);
+  box-shadow: 0 16px 34px rgba(23, 79, 69, 0.16);
+}
+
+.download-emblem img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: translateY(5%);
 }
 
 .coming-soon h2 {
@@ -420,10 +437,65 @@ h1 span {
   font-weight: 650;
 }
 
+.download-card {
+  padding: 22px;
+  border-radius: 20px;
+  background: var(--mint);
+}
+
+.download-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--deep-green);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #5fae76;
+  box-shadow: 0 0 0 4px rgba(95, 174, 118, 0.14);
+}
+
+.download-card strong {
+  display: block;
+  margin-top: 17px;
+  overflow-wrap: anywhere;
+  color: var(--deep-green);
+  font-size: 14px;
+}
+
+.download-meta {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.download-card .download-button {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.download-card > small {
+  display: block;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
 .download-button.light {
   border: 1px solid var(--line);
   background: var(--mint);
   color: var(--deep-green);
+}
+
+.download-button.light:hover {
+  background: white;
 }
 
 footer {
@@ -580,7 +652,7 @@ footer {
     grid-template-columns: 110px 1fr;
   }
 
-  .coming-soon .download-button {
+  .coming-soon .download-card {
     grid-column: 1 / -1;
   }
 
@@ -639,8 +711,12 @@ footer {
     text-align: center;
   }
 
-  .coming-soon img {
+  .download-emblem {
     margin: 0 auto;
+  }
+
+  .download-card {
+    text-align: left;
   }
 
   footer {

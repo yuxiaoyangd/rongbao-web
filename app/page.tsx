@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+const apkDownloadUrl =
+  'https://qfarbetjxywexvpgiucf.supabase.co/storage/v1/object/sign/ronbao-apk100/rongbao.apk?token=eyJraWQiOiI5NTg3ODEyZC05YjMzLTQ2NjItOGVmNi0xZjNlYWRhOTFmYWEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJyb25iYW8tYXBrMTAwL3JvbmdiYW8uYXBrIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4NzcyNDM4NiwiZXhwIjoxODE5MjYwMzg2fQ.TZRx0isylOjShs6_XfjmXbmI9hPotrJArgbC4F7ppJA';
+
 const features = [
   {
     number: '01',
@@ -27,7 +30,13 @@ export default function Home() {
     <main>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="茸宝首页">
-          <span className="brand-mark">茸</span>
+          <Image
+            className="brand-mark"
+            src="/rongbao.png"
+            alt="茸宝狗狗 Logo"
+            width={38}
+            height={38}
+          />
           <span>茸宝</span>
         </a>
         <nav aria-label="主要导航">
@@ -50,10 +59,10 @@ export default function Home() {
             伴侣，陪你记录成长、理解健康信号，也照顾每一次不放心。
           </p>
           <div className="hero-actions">
-            <button className="download-button" type="button" disabled>
-              Android 版敬请期待
-            </button>
-            <span>茸宝 1.0.0 内测版</span>
+            <a className="download-button" href={apkDownloadUrl} download="rongbao.apk">
+              下载 Android 版 <span aria-hidden="true">↗</span>
+            </a>
+            <span>v1.0.0 · ARM64</span>
           </div>
         </div>
 
@@ -111,23 +120,44 @@ export default function Home() {
       </section>
 
       <section className="coming-soon section-shell" id="contact">
-        <Image src="/rongbao.png" alt="茸宝" width={160} height={160} />
-        <div>
-          <p className="eyebrow">COMING SOON</p>
-          <h2>茸宝正在认真准备与你见面。</h2>
+        <div className="download-emblem">
+          <Image
+            src="/rongbao.png"
+            alt="茸宝狗狗形象"
+            width={116}
+            height={116}
+          />
+        </div>
+        <div className="download-copy">
+          <p className="eyebrow">ANDROID · NOW AVAILABLE</p>
+          <h2>把茸宝带在身边。</h2>
           <p>
-            Android 版本仍在内测完善中。产品建议与合作沟通，请发送邮件至
-            <a href="mailto:jianjieluan@163.com"> jianjieluan@163.com</a>。
+            当前提供 Android ARM64 内测版，适用于大多数近年发布的 Android 手机。下载后打开安装包即可开始使用。
           </p>
         </div>
-        <button className="download-button light" type="button" disabled>
-          下载入口暂未开放
-        </button>
+        <div className="download-card">
+          <div className="download-card-top">
+            <span className="status-dot" />
+            <span>下载入口已开放</span>
+          </div>
+          <strong>app-arm64-v8a-release.apk</strong>
+          <span className="download-meta">Android · ARM64-v8a · v1.0.0</span>
+          <a className="download-button light" href={apkDownloadUrl} download="app-arm64-v8a-release.apk">
+            立即下载 <span aria-hidden="true">↓</span>
+          </a>
+          <small>若未自动开始，请点击按钮重试</small>
+        </div>
       </section>
 
       <footer>
         <div className="footer-brand">
-          <span className="brand-mark">茸</span>
+          <Image
+            className="brand-mark"
+            src="/rongbao.png"
+            alt="茸宝狗狗 Logo"
+            width={38}
+            height={38}
+          />
           <div>
             <strong>茸宝 Rongbao</strong>
             <p>更专业的宠物 AI 伴侣</p>
