@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
-const apkDownloadUrl =
-  'https://qfarbetjxywexvpgiucf.supabase.co/storage/v1/object/sign/ronbao-apk100/rongbao.apk?token=eyJraWQiOiI5NTg3ODEyZC05YjMzLTQ2NjItOGVmNi0xZjNlYWRhOTFmYWEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJyb25iYW8tYXBrMTAwL3JvbmdiYW8uYXBrIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4NzcyNDM4NiwiZXhwIjoxODE5MjYwMzg2fQ.TZRx0isylOjShs6_XfjmXbmI9hPotrJArgbC4F7ppJA';
+import { DownloadButton } from './components/download-button';
 
 const features = [
   {
@@ -59,9 +57,9 @@ export default function Home() {
             伴侣，陪你记录成长、理解健康信号，也照顾每一次不放心。
           </p>
           <div className="hero-actions">
-            <a className="download-button" href={apkDownloadUrl} download="rongbao.apk">
+            <DownloadButton className="download-button">
               下载 Android 版 <span aria-hidden="true">↗</span>
-            </a>
+            </DownloadButton>
             <span>v1.0.0 · ARM64</span>
           </div>
         </div>
@@ -142,9 +140,9 @@ export default function Home() {
           </div>
           <strong>app-arm64-v8a-release.apk</strong>
           <span className="download-meta">Android · ARM64-v8a · v1.0.0</span>
-          <a className="download-button light" href={apkDownloadUrl} download="app-arm64-v8a-release.apk">
+          <DownloadButton className="download-button light">
             立即下载 <span aria-hidden="true">↓</span>
-          </a>
+          </DownloadButton>
           <small>若未自动开始，请点击按钮重试</small>
         </div>
       </section>

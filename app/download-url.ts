@@ -1,0 +1,2 @@
+export const apkDownloadUrl =
+  'https://qfarbetjxywexvpgiucf.supabase.co/storage/v1/object/sign/ronbao-apk100/rongbao.apk?token=eyJraWQiOiI5NTg3ODEyZC05YjMzLTQ2NjItOGVmNi0xZjNlYWRhOTFmYWEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJyb25iYW8tYXBrMTAwL3JvbmdiYW8uYXBrIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4NzcyNDM4NiwiZXhwIjoxODE5MjYwMzg2fQ.TZRx0isylOjShs6_XfjmXbmI9hPotrJArgbC4F7ppJA';
