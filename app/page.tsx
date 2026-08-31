@@ -57,7 +57,7 @@ export default function Home() {
             伴侣，陪你记录成长、理解健康信号，也照顾每一次不放心。
           </p>
           <div className="hero-actions">
-            <DownloadButton className="download-button">
+            <DownloadButton className="download-button" fileName="rongbao.apk">
               下载 Android 版 <span aria-hidden="true">↗</span>
             </DownloadButton>
             <span>v1.0.0 · ARM64</span>
@@ -140,7 +140,7 @@ export default function Home() {
           </div>
           <strong>app-arm64-v8a-release.apk</strong>
           <span className="download-meta">Android · ARM64-v8a · v1.0.0</span>
-          <DownloadButton className="download-button light">
+          <DownloadButton className="download-button light" fileName="app-arm64-v8a-release.apk">
             立即下载 <span aria-hidden="true">↓</span>
           </DownloadButton>
           <small>若未自动开始，请点击按钮重试</small>

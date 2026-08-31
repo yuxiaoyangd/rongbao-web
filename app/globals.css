@@ -145,61 +145,62 @@ h1 span {
   transform: translateY(-2px);
 }
 
-.download-guide-page {
-  min-height: 100svh;
+.wechat-download-overlay {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
   padding: 24px;
   display: grid;
   place-items: center;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(120, 174, 152, 0.2), transparent 42%),
-    var(--ivory);
+  background: rgba(23, 45, 39, 0.48);
 }
 
-.download-guide-card {
-  width: min(100%, 520px);
-  padding: 54px 42px 46px;
+.wechat-download-guide {
+  position: relative;
+  width: min(100%, 430px);
+  padding: 42px 32px 36px;
   border: 1px solid var(--line);
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 24px 70px rgba(23, 79, 69, 0.1);
+  border-radius: 24px;
+  background: var(--paper);
+  box-shadow: 0 24px 70px rgba(23, 79, 69, 0.22);
   text-align: center;
 }
 
-.download-guide-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 28px;
-  display: grid;
-  place-items: center;
-  border-radius: 20px;
-  background: var(--mint);
-  color: var(--deep-green);
-  font-size: 30px;
-  font-weight: 700;
-}
-
-.download-guide-card .eyebrow {
-  margin-bottom: 18px;
-}
-
-.download-guide-card h1 {
-  font-size: clamp(34px, 7vw, 52px);
-  letter-spacing: -0.06em;
-}
-
-.download-guide-card > p:not(.eyebrow) {
-  margin: 24px auto 0;
+.wechat-download-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: var(--muted);
-  font-size: 16px;
-  line-height: 1.9;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
 }
 
-.download-guide-back {
-  display: inline-block;
-  margin-top: 32px;
+.wechat-download-dots {
   color: var(--deep-green);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1;
+}
+
+.wechat-download-guide h2 {
+  margin: 22px 0 0;
+  color: var(--deep-green);
+  font-size: 28px;
+  letter-spacing: -0.04em;
+}
+
+.wechat-download-guide p {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
 }
 
 .hero-visual {
@@ -776,8 +777,8 @@ footer {
     text-align: left;
   }
 
-  .download-guide-card {
-    padding: 42px 26px 36px;
+  .wechat-download-guide {
+    padding: 38px 24px 32px;
   }
 
   footer {
