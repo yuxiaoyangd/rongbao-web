@@ -3,20 +3,18 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://rongbao.yick.cc'),
-  title: '茸宝｜更专业的宠物 AI 伴侣',
-  description:
-    '茸宝是一位专业、温暖的宠物 AI 伴侣，陪你关注宠物健康，记录每一次成长。',
+  title: '茸宝｜Ai宠物专家｜健康咨询 - 营养建议 - 行为分析',
+  description: '茸宝知识库海量诊疗信息，帮助万千主人准确迅速诊断。',
   icons: { icon: '/rongbao.png' },
   openGraph: {
-    title: '茸宝｜更专业的宠物 AI 伴侣',
-    description:
-      '更懂宠物，也更懂你的牵挂。专业、温暖的宠物 AI 伴侣。',
+    title: '茸宝｜Ai宠物专家｜健康咨询 - 营养建议 - 行为分析',
+    description: '茸宝知识库海量诊疗信息，帮助万千主人准确迅速诊断。',
     images: [{ url: '/og.png', width: 1728, height: 920 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '茸宝｜更专业的宠物 AI 伴侣',
-    description: '更懂宠物，也更懂你的牵挂。',
+    title: '茸宝｜Ai宠物专家｜健康咨询 - 营养建议 - 行为分析',
+    description: '茸宝知识库海量诊疗信息，帮助万千主人准确迅速诊断。',
     images: ['/og.png'],
   },
 };
