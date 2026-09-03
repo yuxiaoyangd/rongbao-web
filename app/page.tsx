@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { BetaApplicationForm } from './components/beta-application-form';
 import { DownloadButton } from './components/download-button';
 
 const features = [
@@ -60,6 +61,7 @@ export default function Home() {
             <DownloadButton className="download-button" fileName="rongbao.apk">
               下载 Android 版 <span aria-hidden="true">↗</span>
             </DownloadButton>
+            <a className="beta-apply-link" href="#beta-apply">申请内测码</a>
             <span>v1.0.0 · ARM64</span>
           </div>
         </div>
@@ -80,6 +82,8 @@ export default function Home() {
           <div className="floating-note note-two">成长记录</div>
         </div>
       </section>
+
+      <BetaApplicationForm />
 
       <section className="principles" aria-label="茸宝产品原则">
         <span>专业但不冰冷</span>
