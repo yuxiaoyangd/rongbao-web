@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { BetaApplicationForm } from '../../components/beta-application-form';
+import { SiteFooter } from '../../components/site-footer';
 import { knowledgeArticleMap, knowledgeArticles } from '../data';
 
 type KnowledgeArticlePageProps = {
@@ -147,19 +148,7 @@ export default async function KnowledgeArticlePage({ params }: KnowledgeArticleP
         </section>
       )}
 
-      <footer>
-        <div className="footer-links">
-          <Link href="/">首页</Link>
-          <Link href="/knowledge">茸宝知识库</Link>
-          <Link href="/privacy">隐私政策</Link>
-          <Link href="/terms">用户协议</Link>
-        </div>
-        <p className="copyright">© 2026 Rongbao</p>
-        <p className="footer-meta">
-          白色天汉科技公司 · 合肥市蜀山区蜀山经济开发区花峰路1201号 ·{" "}
-          <a href="mailto:jianjieluan@163.com">jianjieluan@163.com</a>
-        </p>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

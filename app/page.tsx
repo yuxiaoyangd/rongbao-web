@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { BetaApplicationForm } from './components/beta-application-form';
 import { DownloadButton } from './components/download-button';
 import { Reveal } from './components/reveal';
+import { SiteFooter } from './components/site-footer';
 import { SiteHeader } from './components/site-header';
 
 const features = [
@@ -140,20 +141,7 @@ export default function Home() {
         </section>
       </Reveal>
 
-      <footer>
-        <div className="footer-links">
-          <Link href="/knowledge">茸宝知识库</Link>
-          <Link href="/privacy">隐私政策</Link>
-          <Link href="/terms">用户协议</Link>
-          <Link href="/account-deletion">账号删除</Link>
-          <a href="mailto:jianjieluan@163.com">联系我们</a>
-        </div>
-        <p className="copyright">© 2026 Rongbao</p>
-        <p className="footer-meta">
-          白色天汉科技公司 · 合肥市蜀山区蜀山经济开发区花峰路1201号 ·{" "}
-          <a href="mailto:jianjieluan@163.com">jianjieluan@163.com</a>
-        </p>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
