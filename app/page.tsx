@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { BetaApplicationForm } from './components/beta-application-form';
 import { DownloadButton } from './components/download-button';
 import { Reveal } from './components/reveal';
+import { SiteHeader } from './components/site-header';
 
 const features = [
   {
@@ -28,25 +29,7 @@ const features = [
 export default function Home() {
   return (
     <main id="top">
-      <header className="site-header">
-        <div className="header-inner">
-          <a className="brand" href="#top" aria-label="茸宝首页">
-            <Image
-              className="brand-mark"
-              src="/rongbao.png"
-              alt=""
-              width={34}
-              height={34}
-            />
-            <span>茸宝</span>
-          </a>
-          <nav className="site-nav" aria-label="主要导航">
-            <a href="#features">产品功能</a>
-            <a href="#about">关于茸宝</a>
-            <a className="nav-download" href="#download">下载 App</a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       <section className="hero" aria-label="茸宝简介">
         <div className="hero-copy">

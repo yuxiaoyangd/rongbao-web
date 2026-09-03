@@ -86,6 +86,27 @@ button:focus-visible {
   backdrop-filter: blur(16px) saturate(1.4);
   -webkit-backdrop-filter: blur(16px) saturate(1.4);
   box-shadow: var(--shadow-sm);
+  transition:
+    height 300ms var(--ease-soft),
+    width 300ms var(--ease-soft),
+    background 240ms ease,
+    box-shadow 240ms ease;
+}
+
+/* scrolled-down: gently narrows — brand mark only on the left, round download button on the right */
+.site-header.is-compact {
+  height: 52px;
+  width: min(560px, calc(100% - 48px));
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow-sm), 0 14px 30px -22px rgba(21, 69, 55, 0.45);
+}
+
+.site-header.is-compact .header-inner {
+  padding: 0 10px;
+}
+
+.site-header.is-compact .brand span {
+  opacity: 0;
 }
 
 .header-inner {
@@ -94,6 +115,7 @@ button:focus-visible {
   align-items: center;
   justify-content: space-between;
   padding: 0 18px 0 10px;
+  transition: padding 300ms var(--ease-soft);
 }
 
 .brand {
@@ -113,17 +135,43 @@ button:focus-visible {
   background: var(--mint);
 }
 
+.brand span {
+  transition: opacity 160ms ease;
+}
+
 .site-nav {
   display: flex;
   align-items: center;
   gap: 28px;
+  max-width: 340px;
+  overflow: hidden;
   color: var(--muted);
   font-size: 14px;
   font-weight: 550;
+  transition: max-width 300ms var(--ease-soft);
+}
+
+.site-header.is-compact .site-nav {
+  max-width: 0;
+  gap: 0;
 }
 
 .site-nav a {
-  transition: color 200ms ease;
+  white-space: nowrap;
+  transition:
+    color 200ms ease,
+    opacity 260ms var(--ease-soft),
+    visibility 260ms ease;
+}
+
+.site-header.is-compact .site-nav a {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    color 200ms ease,
+    opacity 260ms var(--ease-soft),
+    visibility 0s linear 260ms;
 }
 
 .site-nav a:hover {
@@ -131,17 +179,61 @@ button:focus-visible {
 }
 
 .nav-download {
+  position: relative;
+  flex: none;
+  width: 104px;
   height: 38px;
-  padding: 0 18px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   border-radius: 999px;
   background: var(--brand);
   color: #fff !important;
+  font-size: 14px;
   font-weight: 700;
   box-shadow: 0 8px 18px -10px rgba(21, 69, 55, 0.65);
-  transition: background 200ms ease, transform 200ms ease !important;
+  transition:
+    width 300ms var(--ease-soft),
+    height 300ms var(--ease-soft),
+    background 200ms ease,
+    transform 200ms ease !important;
+}
+
+.nav-download-icon {
+  width: 0;
+  height: 0;
+  flex: none;
+  opacity: 0;
+  transition:
+    width 300ms var(--ease-soft),
+    height 300ms var(--ease-soft),
+    opacity 180ms ease;
+}
+
+.nav-download-label {
+  white-space: nowrap;
+  transition: opacity 140ms ease;
+}
+
+.site-header.is-compact .nav-download {
+  width: 40px;
+  height: 40px;
+}
+
+.site-header.is-compact .nav-download-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 1;
+}
+
+.site-header.is-compact .nav-download-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .nav-download:hover {
