@@ -158,20 +158,8 @@ export default function Home() {
       </Reveal>
 
       <footer>
-        <div className="footer-brand">
-          <Image
-            className="brand-mark"
-            src="/rongbao.png"
-            alt=""
-            width={38}
-            height={38}
-          />
-          <div>
-            <strong>茸宝 Rongbao</strong>
-            <p>宠物照护 AI 助手</p>
-          </div>
-        </div>
         <div className="footer-links">
+          <Link href="/knowledge">茸宝知识库</Link>
           <Link href="/privacy">隐私政策</Link>
           <Link href="/terms">用户协议</Link>
           <Link href="/account-deletion">账号删除</Link>
