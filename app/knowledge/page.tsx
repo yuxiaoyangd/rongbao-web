@@ -85,6 +85,10 @@ export default function KnowledgeIndexPage() {
           <Link href="/terms">用户协议</Link>
         </div>
         <p className="copyright">© 2026 Rongbao</p>
+        <p className="footer-meta">
+          白色天汉科技公司 · 合肥市蜀山区蜀山经济开发区花峰路1201号 ·{" "}
+          <a href="mailto:jianjieluan@163.com">jianjieluan@163.com</a>
+        </p>
       </footer>
     </main>
   );

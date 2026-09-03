@@ -681,6 +681,21 @@ footer {
   font-size: 12px;
 }
 
+.footer-meta {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.footer-meta a {
+  color: var(--muted);
+}
+
+.footer-meta a:hover {
+  color: var(--brand);
+}
+
 /* ---------- reveal on scroll ---------- */
 
 .reveal {
