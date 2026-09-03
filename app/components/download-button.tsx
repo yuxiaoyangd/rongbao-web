@@ -2,6 +2,7 @@
 
 import type { MouseEvent, ReactNode } from 'react';
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { apkDownloadUrl } from '../download-url';
 
 type DownloadButtonProps = {
@@ -28,33 +29,35 @@ export function DownloadButton({ children, className, fileName }: DownloadButton
       <a className={className} href={apkDownloadUrl} download={fileName} onClick={handleClick}>
         {children}
       </a>
-      {guideVisible && (
-        <div
-          className="wechat-download-overlay"
-          role="presentation"
-          onClick={() => setGuideVisible(false)}
-        >
+      {guideVisible &&
+        createPortal(
           <div
-            className="wechat-download-guide"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="wechat-download-guide-title"
-            onClick={(event) => event.stopPropagation()}
+            className="wechat-download-overlay"
+            role="presentation"
+            onClick={() => setGuideVisible(false)}
           >
-            <button
-              className="wechat-download-close"
-              type="button"
-              aria-label="关闭提示"
-              onClick={() => setGuideVisible(false)}
+            <div
+              className="wechat-download-guide"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="wechat-download-guide-title"
+              onClick={(event) => event.stopPropagation()}
             >
-              ×
-            </button>
-            <div className="wechat-download-dots" aria-hidden="true">···</div>
-            <h2 id="wechat-download-guide-title">请在浏览器中打开</h2>
-            <p>点击右上角「···」菜单，选择「在浏览器中打开」。</p>
-          </div>
-        </div>
-      )}
+              <button
+                className="wechat-download-close"
+                type="button"
+                aria-label="关闭提示"
+                onClick={() => setGuideVisible(false)}
+              >
+                ×
+              </button>
+              <div className="wechat-download-dots" aria-hidden="true">···</div>
+              <h2 id="wechat-download-guide-title">请在浏览器中打开</h2>
+              <p>点击右上角「···」菜单，选择「在浏览器中打开」。</p>
+            </div>
+          </div>,
+          document.body,
+        )}
     </>
   );
 }

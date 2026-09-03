@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata = { title: '用户协议｜茸宝' };
@@ -7,7 +8,13 @@ export default function TermsPage() {
     <main className="legal-page">
       <header className="legal-header">
         <Link className="brand" href="/">
-          <span className="brand-mark">茸</span>
+          <Image
+            className="brand-mark"
+            src="/rongbao.png"
+            alt=""
+            width={34}
+            height={34}
+          />
           <span>茸宝</span>
         </Link>
         <Link className="back-link" href="/">返回首页</Link>

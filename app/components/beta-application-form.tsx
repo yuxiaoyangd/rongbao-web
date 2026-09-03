@@ -1,18 +1,54 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 const feedbackUrl =
   'https://qfarbetjxywexvpgiucf.supabase.co/functions/v1/feedback';
 
-export function BetaApplicationForm() {
+type BetaApplicationFormProps = {
+  className?: string;
+};
+
+export function BetaApplicationForm({ className }: BetaApplicationFormProps) {
+  const [open, setOpen] = useState(false);
   const [contact, setContact] = useState('');
+  const [confirming, setConfirming] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  useEffect(() => {
+    if (!open) return undefined;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && !submitting) setOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [open, submitting]);
+
+  function openDialog() {
+    setStatus(null);
+    setError(null);
+    setConfirming(false);
+    setOpen(true);
+  }
+
+  function closeDialog() {
+    if (!submitting) {
+      setConfirming(false);
+      setOpen(false);
+    }
+  }
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting || status) return;
+    setError(null);
+    setConfirming(true);
+  }
+
+  async function submitApplication() {
     if (submitting) return;
 
     setSubmitting(true);
@@ -36,6 +72,7 @@ export function BetaApplicationForm() {
         throw new Error(payload.error || '提交失败，请稍后再试');
       }
       setContact('');
+      setConfirming(false);
       setStatus('申请已提交，我们会通过该联系方式发送内测码。');
     } catch (submissionError) {
       setError(
@@ -49,36 +86,116 @@ export function BetaApplicationForm() {
   }
 
   return (
-    <section className="beta-apply-panel section-shell" id="beta-apply">
-      <div>
-        <p className="eyebrow">JOIN THE CLOSED BETA</p>
-        <h2>申请一个内测码，亲自试试茸宝。</h2>
-        <p>
-          填写常用的邮箱或手机号码即可提交申请。审核后，我们会把 6 位内测码发送给你。
-        </p>
-      </div>
-      <form className="beta-apply-form" onSubmit={handleSubmit}>
-        <label htmlFor="beta-contact">邮箱或手机号码</label>
-        <div className="beta-apply-input-row">
-          <input
-            id="beta-contact"
-            name="contact"
-            type="text"
-            autoComplete="email tel"
-            value={contact}
-            onChange={(event) => setContact(event.target.value)}
-            placeholder="例如 13800138000 或 name@example.com"
-            required
-            disabled={submitting}
-          />
-          <button type="submit" disabled={submitting}>
-            {submitting ? '提交中…' : '提交申请'}
-          </button>
-        </div>
-        <small>仅用于内测联系，不会自动创建账号。</small>
-        {status && <p className="beta-form-status success">{status}</p>}
-        {error && <p className="beta-form-status error">{error}</p>}
-      </form>
-    </section>
+    <>
+      <button
+        className={className || 'beta-apply-link'}
+        type="button"
+        onClick={openDialog}
+      >
+        申请内测码
+      </button>
+      {open &&
+        createPortal(
+          <div
+            className="beta-modal-overlay"
+            role="presentation"
+            onClick={closeDialog}
+          >
+            <div
+              className="beta-modal"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="beta-modal-title"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                className="beta-modal-close"
+                type="button"
+                aria-label="关闭申请窗口"
+                onClick={closeDialog}
+              >
+                ×
+              </button>
+              <h2 id="beta-modal-title">申请内测码</h2>
+              <p className="beta-modal-description">
+                邮箱或手机号将作为登录账号，并用于接收内测码。
+              </p>
+              <form className="beta-apply-form" onSubmit={handleSubmit}>
+                <label htmlFor="beta-contact">邮箱或手机号码</label>
+                <input
+                  id="beta-contact"
+                  name="contact"
+                  type="text"
+                  autoComplete="email tel"
+                  value={contact}
+                  onChange={(event) => setContact(event.target.value)}
+                  placeholder="请输入邮箱或手机号码"
+                  required
+                  disabled={Boolean(status)}
+                />
+                {status && <p className="beta-form-status success">{status}</p>}
+                {error && !confirming && (
+                  <p className="beta-form-status error">{error}</p>
+                )}
+                {status ? (
+                  <button
+                    className="beta-modal-submit"
+                    type="button"
+                    onClick={closeDialog}
+                  >
+                    知道了
+                  </button>
+                ) : (
+                  <button className="beta-modal-submit" type="submit">
+                    提交申请
+                  </button>
+                )}
+              </form>
+              {confirming && (
+                <div
+                  className="beta-confirm-overlay"
+                  role="presentation"
+                  onClick={() => !submitting && setConfirming(false)}
+                >
+                  <div
+                    className="beta-confirm-dialog"
+                    role="alertdialog"
+                    aria-modal="true"
+                    aria-labelledby="beta-confirm-title"
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    <h2 id="beta-confirm-title">确认提交申请？</h2>
+                    <p>
+                      <strong>{contact}</strong>
+                      <br />
+                      将作为登录账号，并用于接收内测码。
+                    </p>
+                    <div className="beta-confirm-actions">
+                      <button
+                        type="button"
+                        onClick={() => setConfirming(false)}
+                        disabled={submitting}
+                      >
+                        返回修改
+                      </button>
+                      <button
+                        type="button"
+                        onClick={submitApplication}
+                        disabled={submitting}
+                      >
+                        {submitting ? '提交中…' : '确认提交'}
+                      </button>
+                    </div>
+                    {error && (
+                      <p className="beta-form-status error">{error}</p>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>,
+          document.body,
+        )}
+    </>
   );
 }
