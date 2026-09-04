@@ -660,6 +660,12 @@ footer {
   margin-inline: auto;
 }
 
+.footer-bottom {
+  width: min(1160px, 100%);
+  margin: 44px auto 0;
+  text-align: center;
+}
+
 .footer-left {
   display: flex;
   flex-direction: column;
@@ -1453,6 +1459,10 @@ footer {
     align-items: center;
     text-align: center;
     gap: 40px;
+  }
+
+  .footer-bottom {
+    margin-top: 36px;
   }
 
   .footer-left {

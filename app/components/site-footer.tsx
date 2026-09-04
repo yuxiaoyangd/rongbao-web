@@ -23,8 +23,10 @@ export function SiteFooter() {
             <Link href="/terms">用户协议</Link>
             <Link href="/account-deletion">账号删除</Link>
           </nav>
-          <p className="copyright">© 2026 Rongbao</p>
         </div>
+      </div>
+      <div className="footer-bottom">
+        <p className="copyright">© 2026 Rongbao</p>
       </div>
     </footer>
   );
