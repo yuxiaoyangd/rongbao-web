@@ -49,6 +49,14 @@ export default function Home() {
             </DownloadButton>
             <BetaApplicationForm />
           </div>
+          <a
+            className="web-chat-link"
+            href="https://app.rongbao.yick.cc/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            进入网页版对话 <span aria-hidden="true">↗</span>
+          </a>
         </div>
 
         <div className="hero-visual" aria-label="茸宝品牌形象">

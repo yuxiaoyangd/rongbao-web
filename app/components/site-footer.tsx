@@ -18,6 +18,13 @@ export function SiteFooter() {
         </div>
         <div className="footer-right">
           <nav className="footer-links" aria-label="页脚导航">
+            <a
+              href="https://app.rongbao.yick.cc/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              进入网页版
+            </a>
             <Link href="/knowledge">茸宝知识库</Link>
             <Link href="/privacy">隐私政策</Link>
             <Link href="/terms">用户协议</Link>

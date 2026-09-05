@@ -142,6 +142,14 @@ export function SiteHeader() {
           <span>茸宝</span>
         </a>
         <nav className="site-nav" aria-label="主要导航">
+          <a
+            className="nav-link"
+            href="https://app.rongbao.yick.cc/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            进入网页版
+          </a>
           <a className="nav-link" href="#features">产品功能</a>
           <a className="nav-link" href="#about">关于茸宝</a>
         </nav>
