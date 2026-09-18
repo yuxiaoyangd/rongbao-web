@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function SiteFooter() {
   return (
@@ -16,20 +17,28 @@ export function SiteFooter() {
             </p>
           </address>
         </div>
-        <div className="footer-right">
-          <nav className="footer-links" aria-label="页脚导航">
-            <a
-              href="https://app.rongbao.yick.cc/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              进入网页版
-            </a>
-            <Link href="/knowledge">茸宝知识库</Link>
-            <Link href="/privacy">隐私政策</Link>
-            <Link href="/terms">用户协议</Link>
-            <Link href="/account-deletion">账号删除</Link>
-          </nav>
+        <nav className="footer-links" aria-label="页脚导航">
+          <a
+            href="https://app.rongbao.yick.cc/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            进入网页版
+          </a>
+          <Link href="/knowledge">茸宝知识库</Link>
+          <Link href="/privacy">隐私政策</Link>
+          <Link href="/terms">用户协议</Link>
+          <Link href="/account-deletion">账号删除</Link>
+        </nav>
+        <div className="footer-wechat">
+          <Image
+            src="/wechat-customer-qr.png"
+            alt="客服微信二维码"
+            width={112}
+            height={112}
+            loading="lazy"
+          />
+          <p>添加茸宝专属客服微信</p>
         </div>
       </div>
       <div className="footer-bottom">

@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import Image from 'next/image';
 
 const feedbackUrl =
   'https://qfarbetjxywexvpgiucf.supabase.co/functions/v1/feedback';
@@ -16,6 +17,7 @@ export function BetaApplicationForm({ className }: BetaApplicationFormProps) {
   const [confirming, setConfirming] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
+  const [submittedContact, setSubmittedContact] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -29,6 +31,7 @@ export function BetaApplicationForm({ className }: BetaApplicationFormProps) {
 
   function openDialog() {
     setStatus(null);
+    setSubmittedContact('');
     setError(null);
     setConfirming(false);
     setOpen(true);
@@ -71,7 +74,7 @@ export function BetaApplicationForm({ className }: BetaApplicationFormProps) {
       if (!response.ok) {
         throw new Error(payload.error || '提交失败，请稍后再试');
       }
-      setContact('');
+      setSubmittedContact(contact.trim());
       setConfirming(false);
       setStatus('申请已提交，我们会通过该联系方式发送内测码。');
     } catch (submissionError) {
@@ -102,7 +105,7 @@ export function BetaApplicationForm({ className }: BetaApplicationFormProps) {
             onClick={closeDialog}
           >
             <div
-              className="beta-modal"
+              className={`beta-modal${status ? ' beta-modal-success' : ''}`}
               role="dialog"
               aria-modal="true"
               aria-labelledby="beta-modal-title"
@@ -116,42 +119,62 @@ export function BetaApplicationForm({ className }: BetaApplicationFormProps) {
               >
                 ×
               </button>
-              <h2 id="beta-modal-title">申请内测码</h2>
-              <p className="beta-modal-description">
-                邮箱或手机号将作为登录账号，并用于接收内测码。
-              </p>
-              <form className="beta-apply-form" onSubmit={handleSubmit}>
-                <label htmlFor="beta-contact">邮箱或手机号码</label>
-                <input
-                  id="beta-contact"
-                  name="contact"
-                  type="text"
-                  autoComplete="email tel"
-                  value={contact}
-                  onChange={(event) => setContact(event.target.value)}
-                  placeholder="请输入邮箱或手机号码"
-                  required
-                  disabled={Boolean(status)}
-                />
-                {status && <p className="beta-form-status success">{status}</p>}
-                {error && !confirming && (
-                  <p className="beta-form-status error">{error}</p>
-                )}
-                {status ? (
+              <h2 id="beta-modal-title">{status ? '申请已提交' : '申请内测码'}</h2>
+              {status ? (
+                <p className="beta-modal-description beta-contact-result">
+                  内测码将在通过后发送至：
+                  <strong>{submittedContact || contact}</strong>
+                </p>
+              ) : (
+                <p className="beta-modal-description">
+                  邮箱或手机号将作为登录账号，并用于接收内测码。
+                </p>
+              )}
+              {status ? (
+                <div className="beta-success-state" role="status">
+                  <div className="beta-qr-card">
+                    <Image
+                      src="/wechat-customer-qr.png"
+                      alt="茸宝客服微信二维码"
+                      width={320}
+                      height={473}
+                    />
+                  </div>
+                  <p className="beta-qr-caption">
+                    添加客服微信，直接获取内测码（推荐）
+                  </p>
                   <button
                     className="beta-modal-submit"
                     type="button"
                     onClick={closeDialog}
                   >
-                    知道了
+                    关闭
                   </button>
-                ) : (
-                  <button className="beta-modal-submit" type="submit">
-                    提交申请
-                  </button>
-                )}
-              </form>
-              {confirming && (
+                </div>
+              ) : (
+                <>
+                  <form className="beta-apply-form" onSubmit={handleSubmit}>
+                    <label htmlFor="beta-contact">邮箱或手机号码</label>
+                    <input
+                      id="beta-contact"
+                      name="contact"
+                      type="text"
+                      autoComplete="email tel"
+                      value={contact}
+                      onChange={(event) => setContact(event.target.value)}
+                      placeholder="请输入邮箱或手机号码"
+                      required
+                    />
+                    {error && !confirming && (
+                      <p className="beta-form-status error">{error}</p>
+                    )}
+                    <button className="beta-modal-submit" type="submit">
+                      提交申请
+                    </button>
+                  </form>
+                </>
+              )}
+              {confirming && !status && (
                 <div
                   className="beta-confirm-overlay"
                   role="presentation"

@@ -672,9 +672,9 @@ footer {
 
 .footer-content {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(180px, 240px);
-  align-items: start;
-  gap: 80px;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: end;
+  gap: clamp(28px, 5vw, 72px);
   width: min(1160px, 100%);
   margin-inline: auto;
 }
@@ -692,34 +692,37 @@ footer {
   min-width: 0;
 }
 
-.footer-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 26px;
-  min-width: 0;
-}
-
 .footer-brand {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .footer-brand-name {
-  font-size: 22px;
-  font-weight: 650;
-  color: var(--ink);
+  color: var(--brand-deep);
+  font-size: 21px;
+  font-weight: 750;
   letter-spacing: 0.02em;
+}
+
+.footer-brand::after {
+  width: 28px;
+  height: 2px;
+  content: '';
+  border-radius: 999px;
+  background: var(--accent);
 }
 
 .footer-links {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
+  flex-direction: row;
+  align-items: center;
+  gap: 22px;
+  padding: 0;
   color: var(--muted);
   font-size: 13px;
+  white-space: nowrap;
+  justify-self: center;
 }
 
 .footer-links a,
@@ -731,12 +734,36 @@ footer {
 .footer-links a {
   display: inline-flex;
   align-items: center;
-  min-height: 34px;
+  min-height: 24px;
 }
 
 .footer-links a:hover,
 .back-link:hover {
   color: var(--brand);
+}
+
+.footer-wechat {
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
+  justify-self: end;
+}
+
+.footer-wechat img {
+  width: 112px;
+  height: 112px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.footer-wechat p {
+  margin: 0;
 }
 
 .footer-info {
@@ -745,7 +772,7 @@ footer {
   gap: 4px;
   margin: 0;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
   font-style: normal;
 }
@@ -994,6 +1021,71 @@ footer {
 
 .beta-form-status.error {
   color: var(--danger);
+}
+
+.beta-modal-success {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.beta-modal-success h2 {
+  text-align: center;
+}
+
+.beta-contact-result {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 3px;
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 13px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.beta-contact-result strong {
+  color: var(--brand-deep);
+  font-weight: 750;
+}
+
+.beta-success-state {
+  margin-top: 18px;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.beta-qr-card {
+  width: 190px;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.beta-qr-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+.beta-modal-success .beta-modal-submit {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.beta-qr-caption {
+  margin: 10px 0 0;
+  color: var(--brand);
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: nowrap;
 }
 
 /* confirm step inside beta modal */
@@ -1490,25 +1582,27 @@ footer {
     text-align: center;
   }
 
-  .footer-right {
-    align-items: center;
-    gap: 18px;
-    width: 100%;
-    text-align: center;
-  }
-
   .footer-brand {
     align-items: center;
   }
 
   .footer-links {
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    white-space: normal;
   }
 
   .footer-info {
     align-items: center;
     max-width: 280px;
+    text-align: center;
+  }
+
+  .footer-wechat {
+    justify-items: center;
+    justify-self: center;
     text-align: center;
   }
 
